@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +17,11 @@ public class Profile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "img")
 	private String img;
 	@Column(name = "comment")
@@ -27,13 +31,20 @@ public class Profile {
 	@Column(name = "participation_cnt", nullable = false)
 	private int participationCnt;
 
+	public Profile(String img, String comment, int noShowCnt, int participationCnt) {
+		this.img = img;
+		this.comment = comment;
+		this.noShowCnt = noShowCnt;
+		this.participationCnt = participationCnt;
+	}
+
 	public void updateProfile(String img, String comment) {
 		this.img = img;
 		this.comment = comment;
 	}
-  
+
 	public void increaseParticipationCnt() {
 		this.participationCnt = this.participationCnt + 1;
 	}
-  
+
 }

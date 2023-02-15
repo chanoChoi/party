@@ -1,6 +1,5 @@
 package com.example.party.user.dto;
 
-import com.example.party.user.entity.Profile;
 import com.example.party.user.entity.User;
 
 import lombok.Getter;
@@ -23,13 +22,13 @@ public class MyProfileResponse {
 		this.participationCount = myProfileResponse.getParticipationCount();
 	}
 
-	public MyProfileResponse(User user, Profile profile) {
+	public MyProfileResponse(User user) {
 		this.email = user.getEmail();
 		this.nickName = user.getNickname();
 		this.phoneNum = user.getPhoneNum();
-		this.proFileUrl = profile.getImg();
-		this.comment = profile.getComment();
-		this.participationCount = profile.getParticipationCnt();
+		this.proFileUrl = user.getProfileImg();
+		this.comment = user.getComment();
+		this.participationCount = user.getParticipationCnt();
 	}
 
 }
