@@ -19,7 +19,7 @@ public interface IPartyPostService {
 	DataResponseDto<PartyPostResponse> updatePartyPost(Long partyPostId, PartyPostRequest request);
 
 	//내가 작성한 모집글 리스트 조회 ( 내가 파티장인 경우만 )
-	ListResponseDto<PartyPostListResponse> findMyCreatedPartyList();
+	ListResponseDto<PartyPostListResponse> findMyCreatedPartyList(User user, int page);
 
 	//내가 참석한 모집글 리스트 조회( 내가 파티원인 경우만 )
 	ListResponseDto<PartyPostListResponse> findMyJoinedPartyList();

@@ -54,8 +54,7 @@ class UserServiceTest {
 			.phoneNum("123-1234-1234")
 			.build();
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn(Optional.empty());
+		when(userRepository.findByEmail(any(String.class))).thenReturn(Optional.empty());
 
 		// when
 		ResponseDto response = userService.signUp(request);
@@ -82,11 +81,9 @@ class UserServiceTest {
 		String password = "asd123!@#";
 		String nickname = "ㅁㄴㅇ";
 		String phoneNum = "123-1234-1234";
-		User user = new User(email, password, nickname, phoneNum
-			, UserRole.ROLE_USER, Status.ACTIVE);
+		User user = new User(email, password, nickname, phoneNum, UserRole.ROLE_USER, Status.ACTIVE);
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn((Optional.of(user)));
+		when(userRepository.findByEmail(any(String.class))).thenReturn((Optional.of(user)));
 
 		// when
 		ResponseDto response = userService.signUp(request);
@@ -102,22 +99,18 @@ class UserServiceTest {
 	@DisplayName("로그인")
 	void 로그인_성공() {
 		// given
-		LoginRequest request = LoginRequest.builder()
-			.email("asd123@gmail.com")
-			.password("asd123!@#")
-			.build();
+		LoginRequest request = LoginRequest.builder().email("asd123@gmail.com").password("asd123!@#").build();
 
 		String email = "asd123@gmail.com";
 		String password = "asd123!@#";
 		String nickname = "ㅁㄴㅇ";
 		String phoneNum = "123-1234-1234";
-		User user = new User(email, passwordEncoder.encode(password), nickname, phoneNum
-			, UserRole.ROLE_USER, Status.ACTIVE);
+		User user = new User(email, passwordEncoder.encode(password), nickname, phoneNum, UserRole.ROLE_USER,
+			Status.ACTIVE);
 
 		MockHttpServletResponse servletResponse = new MockHttpServletResponse();
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn((Optional.of(user)));
+		when(userRepository.findByEmail(any(String.class))).thenReturn((Optional.of(user)));
 
 		// when
 		ResponseDto response = userService.signIn(request, servletResponse);
@@ -132,22 +125,18 @@ class UserServiceTest {
 	@DisplayName("로그인")
 	void 입력값_다름_실패() {
 		// given
-		LoginRequest request = LoginRequest.builder()
-			.email("asd123@gmail.com")
-			.password("asd123!@#")
-			.build();
+		LoginRequest request = LoginRequest.builder().email("asd123@gmail.com").password("asd123!@#").build();
 
 		String email = "asd123@gmail.com";
 		String password = "asd123!";
 		String nickname = "ㅁㄴㅇ";
 		String phoneNum = "123-1234-1234";
-		User user = new User(email, passwordEncoder.encode(password), nickname, phoneNum
-			, UserRole.ROLE_USER, Status.ACTIVE);
+		User user = new User(email, passwordEncoder.encode(password), nickname, phoneNum, UserRole.ROLE_USER,
+			Status.ACTIVE);
 
 		MockHttpServletResponse servletResponse = new MockHttpServletResponse();
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn((Optional.of(user)));
+		when(userRepository.findByEmail(any(String.class))).thenReturn((Optional.of(user)));
 
 		// when
 		ResponseDto response = userService.signIn(request, servletResponse);
@@ -162,15 +151,11 @@ class UserServiceTest {
 	@DisplayName("로그인")
 	void 레포짓토리_이메일_없음() {
 		// given
-		LoginRequest request = LoginRequest.builder()
-			.email("asd123@gmail.com")
-			.password("asd123!@#")
-			.build();
+		LoginRequest request = LoginRequest.builder().email("asd123@gmail.com").password("asd123!@#").build();
 
 		MockHttpServletResponse servletResponse = new MockHttpServletResponse();
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn((Optional.empty()));
+		when(userRepository.findByEmail(any(String.class))).thenReturn((Optional.empty()));
 
 		// when
 		ResponseDto response = userService.signIn(request, servletResponse);
@@ -191,19 +176,16 @@ class UserServiceTest {
 	@DisplayName("회원탈퇴")
 	void 회원탈퇴_성공() {
 		// given
-		WithdrawRequest request = WithdrawRequest.builder()
-			.password("asd123!@#")
-			.build();
+		WithdrawRequest request = WithdrawRequest.builder().password("asd123!@#").build();
 
 		String email = "asd123@gmail.com";
 		String password = "asd123!@#";
 		String nickname = "ㅁㄴㅇ";
 		String phoneNum = "123-1234-1234";
-		User userDetails = new User(email, passwordEncoder.encode(password), nickname, phoneNum
-			, UserRole.ROLE_USER, Status.ACTIVE);
+		User userDetails = new User(email, passwordEncoder.encode(password), nickname, phoneNum, UserRole.ROLE_USER,
+			Status.ACTIVE);
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn((Optional.of(userDetails)));
+		when(userRepository.findByEmail(any(String.class))).thenReturn((Optional.of(userDetails)));
 
 		// when
 		ResponseDto response = userService.withdraw(userDetails, request);
@@ -217,21 +199,18 @@ class UserServiceTest {
 	@DisplayName("회원탈퇴")
 	void 비밀번호_비일치() {
 		// given
-		WithdrawRequest request = WithdrawRequest.builder()
-			.password("asd12!")
-			.build();
+		WithdrawRequest request = WithdrawRequest.builder().password("asd12!").build();
 
 		String email = "asd123@gmail.com";
 		String password = "asd123!@#";
 		String nickname = "ㅁㄴㅇ";
 		String phoneNum = "123-1234-1234";
-		User userDetails = new User(email, passwordEncoder.encode(password), nickname, phoneNum
-			, UserRole.ROLE_USER, Status.ACTIVE);
+		User userDetails = new User(email, passwordEncoder.encode(password), nickname, phoneNum, UserRole.ROLE_USER,
+			Status.ACTIVE);
 
 		userRepository.save(userDetails);
 
-		when(userRepository.findByEmail(any(String.class)))
-			.thenReturn((Optional.of(userDetails)));
+		when(userRepository.findByEmail(any(String.class))).thenReturn((Optional.of(userDetails)));
 
 		// when
 		ResponseDto response = userService.withdraw(userDetails, request);
@@ -251,9 +230,8 @@ class UserServiceTest {
 		String password = "asd123!@#";
 		String nickname = "ㅁㄴㅇ";
 		String phoneNum = "123-1234-1234";
-
-		User user = new User(email, passwordEncoder.encode(password), nickname, phoneNum
-			, UserRole.ROLE_USER, Status.ACTIVE);
+		User user = new User(email, passwordEncoder.encode(password), nickname, phoneNum, UserRole.ROLE_USER,
+			Status.ACTIVE);
 		user.setId(1l);
 		Long id = user.getId();
 

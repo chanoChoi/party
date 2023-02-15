@@ -102,11 +102,6 @@ public class PartyPostService implements IPartyPostService {
 		return new DataResponseDto<>(HttpStatus.OK.value(), "모집글 수정 완료", partyPostResponse);
 	}
 
-	@Override
-	public ListResponseDto<PartyPostListResponse> findMyCreatedPartyList() {
-		return null;
-	}
-
 	//모집글 삭제
 	@Override
 	public ResponseDto deletePartyPost(Long partyPostId, User user) {
