@@ -150,11 +150,10 @@ public class RestrictionService {
 	//status.END 상태 파티글에 대한 노쇼 신고 처리
 	@Transactional
 	public void checkingNoShow1(List<PartyPost> posts) {
+		long start = System.nanoTime();
 		for (PartyPost partyPost : posts) {
 			int joinUserSize = partyPost.getApplications().size();
 			List<NoShow> noShowList = noShowRepository.findAllByPartyPostId(partyPost.getId());
-			// 소요 시간 계산
-			long start = System.nanoTime();
 			// reportId 별로 NoShow 개체를 그룹화합니다.
 			Map<Long, List<NoShow>> reportedNoShowMap = new HashMap<>();
 			for (NoShow noShow : noShowList) {
@@ -173,18 +172,19 @@ public class RestrictionService {
 					reported.getProfile().plusNoShowCnt();
 				}
 			}
-			long end = System.nanoTime();
-			System.out.println("HashMap 수행시간: " + (end - start) + " ns");
 		}
+		long end = System.nanoTime();
+		double durationSeconds = (end - start) / 1_000_000_000.0;
+		System.out.println("\n\tHashMap: " + durationSeconds + " seconds\n");
 	}
 
 	@Transactional
 	public void checkingNoShow2(List<PartyPost> posts) {
+		long start = System.nanoTime();
 		for (PartyPost partyPost : posts) {
 			int joinUserSize = partyPost.getApplications().size();
 			List<NoShow> noShowList = noShowRepository.findAllByPartyPostId(partyPost.getId());
 			// 소요 시간 계산
-			long start = System.nanoTime();
 			// reportId 별로 NoShow 개체를 그룹화합니다.
 			Set<Long> uniqueReportedIds = new HashSet<>();
 			for (NoShow noShow : noShowList) {
@@ -203,18 +203,19 @@ public class RestrictionService {
 					reported.getProfile().plusNoShowCnt();
 				}
 			}
-			long end = System.nanoTime();
-			System.out.println("Hashset 수행시간: " + (end - start) + " ns");
 		}
+		long end = System.nanoTime();
+		double durationSeconds = (end - start) / 1_000_000_000.0;
+		System.out.println("\n\tHashSet: " + durationSeconds + " seconds");
 	}
 
 	@Transactional
 	public void checkingNoShow3(List<PartyPost> posts) {
+		long start = System.nanoTime();
 		for (PartyPost partyPost : posts) {
 			int joinUserSize = partyPost.getApplications().size();
 			List<NoShow> noShowList = noShowRepository.findAllByPartyPostId(partyPost.getId());
-			// 소요 시간 계산
-			long start = System.nanoTime();
+
 			// reportId 별로 NoShow 개체를 그룹화합니다.
 			List<Long> uniqueReportedIds = new ArrayList<>(joinUserSize);
 			for (NoShow noShow : noShowList) {
@@ -235,9 +236,10 @@ public class RestrictionService {
 					reported.getProfile().plusNoShowCnt();
 				}
 			}
-			long end = System.nanoTime();
-			System.out.println("ArrayList 수행시간: " + (end - start) + " ns");
 		}
+		long end = System.nanoTime();
+		double durationSeconds = (end - start) / 1_000_000_000.0;
+		System.out.println("\n\tArrayList: " + durationSeconds + " seconds");
 	}
 
 	//private

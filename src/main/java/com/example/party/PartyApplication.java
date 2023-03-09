@@ -49,7 +49,7 @@ public class PartyApplication {
 			categoryRepository.save(category3);
 
 			// 만들 더미 데이터 수를 입력하세요 :
-			int createPartyPostSize = 3;
+			int createPartyPostSize = 100;
 			List<User> users = new ArrayList<>();
 			List<User> applicationUsers = new ArrayList<>();
 			List<PartyPost> posts = new ArrayList<>();
@@ -74,7 +74,7 @@ public class PartyApplication {
 							.content("테스트")
 							.categoryId((long)3)
 							.maxMember((byte)5)
-							.partyDate("2023-03-09 20:00")
+							.partyDate("2023-03-09 16:00")
 							.partyAddress("onLine")
 							.partyPlace("onLine")
 							.build();
@@ -124,6 +124,7 @@ public class PartyApplication {
 					if (applicationUsers.size() == post.getMaxMember()) {
 						User ReportUser = applicationUsers.get(1);
 						applicationUsers.remove(ReportUser);
+
 						for (int m = 0; m < applicationUsers.size(); m++) {
 							NoShow noShow = new NoShow(applicationUsers.get(m).getId(),
 								ReportUser.getId(), post.getId());
@@ -132,7 +133,6 @@ public class PartyApplication {
 						applicationUsers.clear();
 					}
 				}
-
 			}
 		};
 	}
