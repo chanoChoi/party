@@ -37,10 +37,13 @@ public class PartyPostScheduler {
 	}
 
 	// NO_SHOW_REPORTING -> PROCESSING (모임시간 후 1시간 지나면 변경)
-	@Scheduled(cron = "0 0 * * * ?") // (테스트용)1분 간격으로 실행 // 배포시 매시 정각 마다로 변경 필요
+	@Scheduled(cron = "0 * * * * ?") // (테스트용)1분 간격으로 실행 // 배포시 매시 정각 마다로 변경 필요
 	public void changeStatusNoShowToProcessing() {
 		System.out.println("NO_SHOW_REPORTING -> PROCESSING 동작");
 		partyPostRepository.changeStatusNoShowToProcessing(LocalDateTime.now().minusHours(1));
-		restrictionService.checkingNoShow(partyPostRepository.statusEqualProcessing());
+		restrictionService.checkingNoShow1(partyPostRepository.statusEqualProcessing());
+		restrictionService.checkingNoShow2(partyPostRepository.statusEqualProcessing());
+		restrictionService.checkingNoShow3(partyPostRepository.statusEqualProcessing());
+
 	}
 }
