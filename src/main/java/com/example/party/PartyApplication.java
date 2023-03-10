@@ -93,13 +93,6 @@ public class PartyApplication {
 				}
 			}
 
-			// Long 10 부터 아스키 코드로 뱉어서 문제가 발생함
-			System.out.println("\n");
-			for (User user : users) {
-				System.out.println(user);
-			}
-			System.out.println("\n");
-
 			if (posts.size() == createPartyPostSize) {
 				for (int k = 0; k < createPartyPostSize; k++) {
 					PartyPost post = posts.get(k);
@@ -109,17 +102,13 @@ public class PartyApplication {
 						Application application = new Application(userApplication, post);
 						application.accept();
 						applicationRepository.save(application);
-						// users.remove(userApplication);
 						applicationUsers.add(userApplication);
 					}
 					if (applicationUsers.size() == post.getMaxMember() - 1) {
-						// for문 도는 와중에 users.remove() 를 하니 즉 액세스 하는 동안 목록이 수정되어 예기치 않은 동작, 오류가 발생했음
 						users.removeAll(applicationUsers);
 						applicationUsers.add(post.getUser());
 						applicationUsers.sort(idComparator);
 					}
-
-					System.out.println("\n" + applicationUsers + "\n");
 
 					if (applicationUsers.size() == post.getMaxMember()) {
 						User ReportUser = applicationUsers.get(1);
