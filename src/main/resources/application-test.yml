@@ -1,0 +1,32 @@
+local:
+  server:
+    port: 8080
+
+#spring:
+#  datasource:
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    url: ${DB_URL}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        format_sql: true
+#
+#  redis:
+#    host: 13.124.4.58
+#    port: 6379
+#
+#  thymeleaf:
+#    prefix: "classpath:/templates/"
+#    suffix: ".html"
+#
+#server:
+#  error:
+#    include-message: always

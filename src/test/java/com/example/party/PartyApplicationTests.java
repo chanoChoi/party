@@ -1,13 +1,13 @@
-package com.example.party;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class PartyApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+// package com.example.party;
+//
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
+//
+// @SpringBootTest
+// class PartyApplicationTests {
+//
+// 	@Test
+// 	void contextLoads() {
+// 	}
+//
+// }

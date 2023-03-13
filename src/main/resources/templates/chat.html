@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link th:href="@{/css/chat.css}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+<main>
+    <header>
+        <div class="title">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/%EC%82%AC%EB%9E%8C.png" alt="" width="35px">
+            <h1>토크 토크 토크</h1> <!-- 현재 유저 명  -->
+        </div>
+        <button id="toggle-btn" type="button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/%EC%82%AC%EB%9E%8C.png" alt="" width="50px">
+        </button>
+    </header>
+    <div class="container">
+
+        <div class="users-window">
+            <div class="users-head">
+                <h3>People</h3>
+                <h4>3</h4>
+            </div>
+            <div class="users-list">   <!--  여기 유저 리스트  -->
+                <!--        <p class="active" id="1">Person1</p>-->
+                <!--        <p>Person1</p>-->
+                <!--        <p>Person1</p>-->
+            </div>
+        </div>
+
+        <div class="chat-window">
+            <div class="chats">
+                <div class="user-join">
+                    <p><b th:text="${user.nickname}"></b> 대화방 참가</p>
+                </div>
+<!--                <div class="message incoming">-->
+<!--                    <h5>Jarvis</h5>-->
+<!--                    <p>Hello Ultron</p>-->
+<!--                </div>-->
+<!--                <div class="message outgoing">-->
+<!--                    <h5>Veronica</h5>-->
+<!--                    <p>Welcome Jarvis</p>-->
+<!--                </div>-->
+            </div>
+            <div class="user-input">
+                <input id="textArea" type="text" placeholder="Type yout Message">
+                <button id="send-btn" disabled="disabled">SEND</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"
+        integrity="sha512-aHuAnb+FZ/yM5zYvdiA8q0sxLdsBQ3PRwO8D/08qsenCLQ2gWsosB43Cn1X8esAz0IpaC7Ns5cAPyKIdJQ0hNw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+        integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script th:inline="javascript">
+    let client = null;
+    let roomId = null;
+    let arr = [];
+
+    const uWindow = document.querySelector(".users-window");
+
+    const show_hide = () => {
+        if (uWindow.style.display === "block") {
+            uWindow.style.display = "none";
+        } else {
+            uWindow.style.display = "block";
+        }
+    }
+
+    const getAllRoom = () => {
+        $.ajax({
+            url: "/rooms",
+            method: "GET"
+        })
+            .done(json => {
+                console.log(json)
+                for (const each of json) {
+                    const p = document.createElement("p");
+                    p.innerText = each.roomName;
+                    p.id = each.roomId
+                    roomId = (roomId === null) ? each.roomId : roomId;
+                    p.addEventListener("click", () => renderChats(each.roomId))
+                    $(".users-list").append(p);
+                }
+            })
+            .then(() => {
+                tryConnect();
+            }).then(() => {
+                renderChats(roomId);
+        })
+    }
+
+    const subscribe = (targetId) => {
+        client.subscribe("/queue/rooms/" + targetId, (chat) => {
+        let obj = JSON.parse(chat.body);
+
+        createChat(obj);
+    })}
+
+    const tryConnect = () => {
+        var sock = new SockJS("/ws-chatting");
+        client = Stomp.over(sock);
+
+        client.connect({}, () => {
+            subscribe(roomId)
+
+            client.subscribe("/errors", (chat) => {
+                console.log("에러 에러 에러 에러에러에 러에러에러에ㅓㄹ")
+                console.log(chat)
+            })
+        })
+    }
+
+    const sendMessage = (e) => {
+        const cur = $(e.target);
+        let key = e.key || e.keyCode;
+
+        if (key === 'Enter' || key === 13) {
+            if (cur.val().trim().length === 0) {
+                alert("내용을 입력 해주세요")
+                $("#send-btn").attr("disabled", true)
+                return;
+            }
+            e.preventDefault();
+            console.log([[${user.getNickname()}]]);
+            const obj = {
+                msg: cur.val(),
+                messageType: "SEND",
+                roomId: roomId,
+                writer: [[${user.getNickname()}]]
+            }
+            cur.val("");
+
+            client.send("/app/rooms/message", {}, JSON.stringify(obj))
+
+            if (!window.localStorage.getItem(roomId)) { // null 일때
+                window.localStorage.setItem(roomId, JSON.stringify([]));
+            }
+            let data = window.localStorage.getItem(roomId);
+
+            data = JSON.parse(data);
+            data.push(obj);
+            window.localStorage.setItem(roomId, JSON.stringify(data));
+
+
+        } else if (cur.val().trim().length > 0){
+            $("#send-btn").attr("disabled", false)
+        } else {
+            $("#send-btn").attr("disabled", true)
+        }
+    }
+
+    const renderChats = (targetId) => {
+        if (targetId !== roomId) {
+            subscribe(targetId);
+        }
+        roomId = targetId;
+        $(".chats .message").remove();
+
+        if (!!window.localStorage.getItem(targetId)) { // null이 아닐때
+            arr = JSON.parse(localStorage.getItem(targetId));
+            console.log(arr);
+        }
+
+        for (const each of arr) {
+            createChat(each);
+        }
+    }
+
+    const createChat = (obj) => {
+        let div = document.createElement("div");
+        if (obj.writer === [[${user.getNickname()}]]) {
+            div.className = "message incoming";
+        } else {
+            div.className = "message outgoing";
+        }
+
+        let h5 = document.createElement("h5");
+        h5.innerText = obj.writer;
+
+        let p = document.createElement("p");
+        p.innerText = obj.msg;
+
+        div.append(h5);
+        div.append(p);
+        $(".chats").append(div);
+    }
+
+    $(() => {
+        // 함수 등록
+        $("#toggle-btn").on("click", () => show_hide())
+        $("#textArea").on("keypress", ev => sendMessage(ev))
+        // ajax 시작
+        getAllRoom();
+        // Sock 등록
+    })
+</script>
+
+</html>

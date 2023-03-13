@@ -10,7 +10,33 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+
+  redis:
+    host: ${REDIS_HOST}
+    port: 6379
+    #redis의 host 값은 로컬기동시 :localhost / 원격 기동시 AWS redis 접속주소 입력해야 합니다
+
+  thymeleaf:
+    prefix: "classpath:/templates/"
+    suffix: ".html"
+    cache: false
+
+server:
+  error:
+    include-message: always
+
+cloud:
+  aws:
+    s3:
+      bucket: letsparty-image-bucket
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${S3_ACCESS_KEY}
+      secretKey: ${S3_SECRET_KEY}

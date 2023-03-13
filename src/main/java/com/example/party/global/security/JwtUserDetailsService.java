@@ -21,4 +21,5 @@ public class JwtUserDetailsService implements UserDetailsService {
 		return userRepository.findByEmail(email)
 			.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "해당 유저를 찾을 수 없습니다."));
 	}
+
 }

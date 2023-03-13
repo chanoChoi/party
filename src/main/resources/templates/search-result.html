@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Let's PARTY|Search|Result</title>
+    <style>
+        .wrap_4 ul {
+            text-align: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* 리스트 아이템들을 가로로 나열하기 위해 flexbox 레이아웃을 사용합니다. */
+        }
+
+        .wrap_4 li {
+            margin-right: 10px; /* 리스트 아이템들 간의 간격을 조정합니다. */
+            display: inline-block; /* 리스트 아이템들을 가로로 나열합니다. */
+        }
+    </style>
+    <link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/>
+    <!-- Font Awesome icons (free version)-->
+    <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="../js/search-result.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/scripts.js"></script>
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5 py-3">
+        <a class="navbar-brand" href="/page/indexPage">Let's PARTY</a>
+        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto" id="categories">
+                |
+                <!-- 불러온 카테고리 들어갈 곳 -->
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" id="signupBtn"><a class="nav-link"
+                                                       href="/page/signup">회원가입</a>
+                </li>
+                <li class="nav-item" id="loginBtn"><a class="nav-link"
+                                                      href="/page/loginPage">로그인</a>
+                </li>
+                <li class="nav-item" id="logoutBtn"><a class="nav-link"
+                                                       onclick="logout()">로그아웃</a>
+                <li class="nav-item" id="mypageBtn"><a class="nav-link" href="/page/myPage/profile">마이페이지</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0">Let's PARTY!</h1>
+            <h2 class="masthead-subheading mb-4">관심있는 모임을 확인해봐요!</h2>
+            <form onsubmit="return false">
+                        <span style="font-size:1.5em;">
+                        <input class="search-text" id="search" name="search" onkeyup="handleKeyUp(event)"
+                               placeholder="관심있는 제목 또는 지역을 입력해주세요.">
+                        <a class="search-btn" id="searchPartyPost" onclick="handleSearchButtonClick()">검색</a>
+                        </span>
+            </form>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+<!-- Content section 1-->
+<section id="scroll">
+    <a class="text-decoration-none link-dark " href="#!">
+        <h5 class="card-title mt-5 ms-2 fs-4"> > 검색 결과</h5></a>
+    <div class="row gx-5 ms-5" id="searchPartyPostResult">
+    </div>
+</section>
+
+<div class="wrap_4" id="pageNavigation" style="position: relative; margin-bottom: 100px">
+    <nav aria-label="Page navigation example">
+        <ul>
+            <li><a href="#" onclick="searchPartyPost(1)">1</a></li>
+            <li><a href="#" onclick="searchPartyPost(2)">2</a></li>
+            <li><a href="#" onclick="searchPartyPost(3)">3</a></li>
+            <li><a href="#" onclick="searchPartyPost(4)">4</a></li>
+            <li><a href="#" onclick="searchPartyPost(5)">5</a></li>
+            <li><a href="#" onclick="searchPartyPost(6)">6</a></li>
+            <li><a href="#" onclick="searchPartyPost(7)">7</a></li>
+            <li><a href="#" onclick="searchPartyPost(8)">8</a></li>
+            <li><a href="#" onclick="searchPartyPost(9)">9</a></li>
+            <li><a href="#" onclick="searchPartyPost(10)">10</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- Footer-->
+<footer class="py-3 bg-black">
+    <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Let's Party team 2023</p>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

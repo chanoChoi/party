@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Let's PARTY</title>
+    <style>
+        input[type="text"] {
+            text-align: center;
+            width: 100%;
+            padding: 1rem 2rem;
+            margin: 1rem 0;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 20px;
+            background-color: #EEEEEE;
+            color: #33312E;
+            font-size: 1.2rem;
+            outline: none;
+        }
+    </style>
+    <link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/>
+    <!-- Font Awesome icons (free version)-->
+    <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet"/>
+    <!--    jquery 라이브러리 로드 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- css & javascript 불러오기 -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/from-mypage.css}">
+    <script th:src="@{/js/mypage-partypost-like.js}" type="text/javascript"></script>
+    <script th:src="@{/js/scripts.js}" type="text/javascript"></script>
+    <title>내가 좋아요한 모집글</title>
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5 py-3">
+        <a class="navbar-brand" href="/page/indexPage">Let's PARTY</a>
+        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto" id="categories">
+
+                <!-- 불러온 카테고리 들어갈 곳 -->
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link"
+                                        onclick="logout()">로그아웃</a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h2 class="masthead-subheading mb-0">마이페이지 - 좋아요한 모집글</h2>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="mypageMain">
+        <!-- 사이드바 -->
+        <data align="left" class="mypageLeftMenu">
+            <a class="nav-link" href="/page/myPage/profile">내 정보</a>
+            <a class="nav-link" href="/page/myPage/partypost/created">내 모집글 목록</a>
+            <a class="nav-link" href="/page/myPage/partypost/apply">신청 모집글 목록</a>
+            <a class="nav-link" href="/page/myPage/partypost/like">좋아한 모집글</a>
+            <a class="nav-link" href="/page/myPage/block">차단 유저관리</a>
+        </data>
+
+        <div class="mypageEdit-created">
+            <div class="mypartypost-like-list" id="mypartypost-like-list">
+                <div class="mypartypost" id="mypartypost3">
+                    글 제목 : 글 제목4 / 마감일자 : 마감일자 / 위치 : 위치
+                    <button class="btn btn-warning rounded-pill" onclick="window.location.href= 'login.html'">글이동
+                    </button>
+                    <button class="btn btn-primary rounded-pill">좋아요 취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

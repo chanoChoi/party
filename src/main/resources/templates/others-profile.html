@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet"/>
+    <!--    jquery 라이브러리 로드 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- css & javascript 불러오기 -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/from-mypage.css}">
+    <script type="text/javascript" th:src="@{/js/others-profile.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+    <title>상대 유저 정보</title>
+
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5 py-3">
+        <a class="navbar-brand" href="/page/indexPage">Let's PARTY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto" id="categories">
+                <!-- 불러온 카테고리 들어갈 곳 -->
+
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link"
+                                        onclick="logout()">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h2 class="masthead-subheading mb-0">상대 유저 정보</h2>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="pageEdit" id="other-profile">
+        <div id="nickname" class="nickname">
+            <h2>상대 닉네임</h2>
+        </div>
+        <img src="../static/css/images/person.png" width=150 height=110>
+        <div id="status-message" class="status-message"><h5>상태 메세지</h5>
+            <br> 나는 오늘도 배고프다 몹시 배고프다 소고기가 먹고싶다, 업진살...
+        </div>
+        <div class="otherpartypost-list">
+            <div class="otherpartypost">
+                <strong> 상대방 모집글</strong>
+            </div>
+
+            <div id="partypost1" class="partypost">
+                <strong> 글 제목 : 글 제목1 / 마감일자 : 마감일자 / 위치 : 위치 / 모집 상태 : 모집중</strong>
+                <button class="btn btn-warning rounded-pill" onclick="window.location.href= 'login.html'">유저정보
+                </button>
+            </div>
+        </div>
+        <div class="partypost-list">
+            <div class="otherpartypost">
+                <strong> 신청한 모집글</strong>
+            </div>
+
+            <div id="partypost6" class="partypost">
+                <strong> 글 제목 : 글 제목1 / 마감일자 : 마감일자 / 위치 : 위치 / 모집 상태 : 모집중</strong>
+                <button class="btn btn-warning rounded-pill" onclick="window.location.href= 'login.html'">유저정보
+                </button>
+            </div>
+        </div>
+
+        <div class="noshowpartypost-list">
+            <div class="otherpartypost">
+                <strong> 노쇼한 모집글</strong>
+            </div>
+
+            <div id="partypost8" class="partypost">
+                <strong> 글 제목 : 글 제목1 / 마감일자 : 마감일자 / 위치 : 위치 / 모집 상태 : 모집중</strong>
+                <button class="btn btn-warning rounded-pill" onclick="window.location.href= 'login.html'">유저정보
+                </button>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-danger rounded-pill" value="해당유저 신고">
+        <input type="submit" class="btn btn-primary rounded-pill" value="해당유저 차단">
+    </div>
+</div>
+</body>
+</html>

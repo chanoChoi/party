@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Let's PARTY</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="../js/index.js"></script>
+    <script src="../js/scripts.js"></script>
+
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5 py-3">
+        <a class="navbar-brand" href="/page/indexPage">Let's PARTY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto" id="categories">
+                <!-- 불러온 카테고리 들어갈 곳 -->
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li id="signupBtn" class="nav-item"><a class="nav-link"
+                                                       href="/page/signup">회원가입</a>
+                </li>
+                <li id="loginBtn" class="nav-item"><a class="nav-link"
+                                                      href="/page/loginPage">로그인</a>
+                </li>
+                <li id="logoutBtn" class="nav-item"><a class="nav-link"
+                                                       onclick="logout()">로그아웃</a>
+                <li id="mypageBtn" class="nav-item"><a class="nav-link" href="/page/myPage/profile">마이페이지</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0">Let's PARTY</h1>
+            <h2 class="masthead-subheading mb-4">관심있는 모임을 찾아봐요!</h2>
+            <form onsubmit="return false">
+                        <span style="font-size:1.5em;">
+                        <input class="search-text" id="search" name="search" placeholder="관심있는 제목 또는 지역을 입력해주세요."
+                               onkeyup="handleKeyUp(event)">
+                        <a class="search-btn" id="searchPartyPost" onclick="handleSearchButtonClick()">검색</a>
+                        </span>
+            </form>
+            <a class="write-btn" onclick="clickToPostWriter()">모집글 작성하기</a>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+<!-- Content section 1-->
+<section id="scroll">
+    <a class="text-decoration-none link-dark"><h5 class="card-title mt-5 ms-2 fs-4">내 주변 모임 TOP 3</h5><h6>(현재 연남동
+        기준입니다)</h6></a>
+    <div id="nearPartyposts" class="row gx-5 ms-5">
+        <div class="col-lg-4 my-5">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Status</div>
+                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Party
+                        post title</h5></a>
+                    <p class="card-text mb-0">위치 정보: 00시 00동</p>
+                    <p class="card-text mb-0">모임일: 2023-03-12 15:15</p>
+                    <p class="card-text mb-0">모집 인원 1/3</p>
+                </div>
+                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                 alt="..."/>
+                            <div class="small">
+                                <div class="fw-bold">파티장 닉네임</div>
+                                <div class="text-muted">마감일: 2023-03-12 15:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 my-5">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Status</div>
+                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Party
+                        post title</h5></a>
+                    <p class="card-text mb-0">위치 정보: 00시 00동</p>
+                    <p class="card-text mb-0">모임일: 2023-03-12 15:15</p>
+                    <p class="card-text mb-0">모집 인원 1/3</p>
+                </div>
+                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                 alt="..."/>
+                            <div class="small">
+                                <div class="fw-bold">파티장 닉네임</div>
+                                <div class="text-muted">마감일: 2023-03-12 15:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 my-5">
+            <div class="card h-100 shadow border-0 me-5">
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Status</div>
+                    <a class="text-decoration-none link-dark stretched-link"><h5 class="card-title mb-3">Party
+                        post title</h5></a>
+                    <p class="card-text mb-0">위치 정보: 00시 00동</p>
+                    <p class="card-text mb-0">모임일: 2023-03-12 15:15</p>
+                    <p class="card-text mb-0">모집 인원 1/3</p>
+                </div>
+                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                 alt="..."/>
+                            <div class="small">
+                                <div class="fw-bold">파티장 닉네임</div>
+                                <div class="text-muted">마감일: 2023-03-12 15:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Content section 2-->
+<section>
+    <a class="text-decoration-none link-dark"><h5 class="card-title mt-5 ms-2 fs-4">조회수 높은 핫한 모임 TOP 3</h5>
+    </a>
+    <div id="hotPartyposts" class="row gx-5 ms-5">
+        <div class="col-lg-4 my-5">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Status</div>
+                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Party
+                        post title</h5></a>
+                    <p class="card-text mb-0">위치 정보: 00시 00동</p>
+                    <p class="card-text mb-0">모임일: 2023-03-12 15:15</p>
+                    <p class="card-text mb-0">모집 인원 1/3</p>
+                </div>
+                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                 alt="..."/>
+                            <div class="small">
+                                <div class="fw-bold">파티장 닉네임</div>
+                                <div class="text-muted">마감일: 2023-03-12 15:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 my-5">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Status</div>
+                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Party
+                        post title</h5></a>
+                    <p class="card-text mb-0">위치 정보: 00시 00동</p>
+                    <p class="card-text mb-0">모임일: 2023-03-12 15:15</p>
+                    <p class="card-text mb-0">모집 인원 1/3</p>
+                </div>
+                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                 alt="..."/>
+                            <div class="small">
+                                <div class="fw-bold">파티장 닉네임</div>
+                                <div class="text-muted">마감일: 2023-03-12 15:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 my-5">
+            <div class="card h-100 shadow border-0 me-5">
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Status</div>
+                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Party
+                        post title</h5></a>
+                    <p class="card-text mb-0">위치 정보: 00시 00동</p>
+                    <p class="card-text mb-0">모임일: 2023-03-12 15:15</p>
+                    <p class="card-text mb-0">모집 인원 1/3</p>
+                </div>
+                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                 alt="..."/>
+                            <div class="small">
+                                <div class="fw-bold">파티장 닉네임</div>
+                                <div class="text-muted">마감일: 2023-03-12 15:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer class="py-3 bg-black">
+    <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Let's Party team 2023</p>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

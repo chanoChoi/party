@@ -15,7 +15,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JwtEntryPoint implements AuthenticationEntryPoint {
-	private static final SecurityExceptionDto exceptionDto = new SecurityExceptionDto(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
+	private static final SecurityExceptionDto exceptionDto = new SecurityExceptionDto(HttpStatus.UNAUTHORIZED.value(),
+		HttpStatus.UNAUTHORIZED.getReasonPhrase());
 
 	@Override // XXX-Authentication
 	public void commence(HttpServletRequest request, HttpServletResponse response,
@@ -23,7 +24,7 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
-		try(OutputStream os = response.getOutputStream()) {
+		try (OutputStream os = response.getOutputStream()) {
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.writeValue(os, exceptionDto);
 			os.flush();

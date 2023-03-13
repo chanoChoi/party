@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Let's PARTY|MyPage</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/mypage-profile.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/>
+    <!-- Font Awesome icons (free version)-->
+    <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet"/>
+
+    <!-- JQuery 사용 설정 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/js/mypage-profile.js"></script>
+    <script src="/js/scripts.js"></script>
+
+    <script
+            crossorigin="anonymous"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+<!-- 상단바 -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5 py-3">
+        <a class="navbar-brand" href="/page/indexPage">Let's PARTY</a>
+        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <!-- 카테고리 -->
+            <ul class="navbar-nav ms-auto" id="categories">
+
+                <!-- 불러온 카테고리 들어갈 곳 -->
+
+            </ul>
+            <!-- 상단바 회원 관련 바로가기 -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link"
+                                        onclick="logout()">로그아웃</a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- 헤더 -->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h2 class="masthead-subheading mb-0">마이페이지 - 내 정보</h2>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="mypageMain">
+        <!-- 사이드바 -->
+        <data align="left" class="mypageLeftMenu">
+            <a class="nav-link" href="/page/myPage/profile">내 정보</a>
+            <a class="nav-link" href="/page/myPage/partypost/created">내 모집글 목록</a>
+            <a class="nav-link" href="/page/myPage/partypost/apply">신청 모집글 목록</a>
+            <a class="nav-link" href="/page/myPage/partypost/like">좋아한 모집글</a>
+            <a class="nav-link" href="/page/myPage/block">차단 유저관리</a>
+        </data>
+        <!-- 여기부터 본문 -->
+        <div class="mypage-info">
+            <div class="outer">
+                <div id="profile">
+                    <!-- 유저 프로필 들어갈 곳 -->
+                    <img class="circle-profile margin-bottom" src="${profileImg}">
+                    <!-- 유저 닉네임 들어갈 곳 -->
+                    <div id="profile-nickname"><h2>유저 닉네임: </h2></div>
+                    <!-- 유저 이메일 들어갈 곳 -->
+                    <div id="profile-email"><h2>이메일: </h2></div>
+                    <!-- 상태메세지 들어갈 곳 -->
+                    <div class="status-message" id="profile-comment"><h5>상태메세지: </h5>
+                        <br> ${comment}
+                    </div>
+                </div>
+
+                <!-- 수정내용 들어갈 곳 -->
+                <div class="mt-5" id="editProfile">
+                    <h5>- 수정내용 입력 -</h5>
+                    <div class="edit-message">
+                        <div id="image-input">
+                            <label class="mt-3" for="img">프로필 이미지 업로드(수정시 필수): </label>
+                            <input id="img" type="file">
+                        </div>
+                        <div class="nickname-input mb-3">
+                            <label for="nickname">닉네임 수정입력:</label>
+                            <textarea id="nickname" name="nickname"></textarea>
+                        </div>
+                        <div class="comment-input mb-3" id="comment-input">
+                            <label for="comment">상태메세지 수정입력:</label>
+                            <textarea id="comment" name="comment"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mb-3" onclick="editProfile()" type="button">수정하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
